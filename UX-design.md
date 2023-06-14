@@ -1,5 +1,11 @@
 # Teorihandboken - UX och design (UD)
-Studerande: Förnamn Efternamn
+Studerande: Malin Bragazzi
+
+
+Inlämnad 2022
+
+
+
 
 ## UD 1.1 Grafik och design för webbsidor
 Beskriv rubriken här

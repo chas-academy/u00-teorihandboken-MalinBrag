@@ -1,5 +1,9 @@
 # Teorihandboken - HTML & CSS (HC)
-Studerande: Förnamn Efternamn
+Studerande: Malin Bragazzi
+
+Inlämnad 2022
+
+
 
 ## HC 1.1 HTML & CSS
 Beskriv rubriken här
