@@ -95,17 +95,54 @@ Det skapar en interaktiv webbsida som kan reagera på användarens aktioner i re
 Om man har för många event handlers på sin sida så kan det dock skapas flaskhalsar och det påverkar prestandan.
 
 ## JS 1.9 Prototype inheritance
-Beskriv rubriken här
+Vad? Hur?
+JavaScript är ett prototypbaserat språk. I JavaScript är en prototyp ett objekt som används som mall för att skapa andra objekt. När nya objekt skapas så ärver dom egenskaper och metoder från moderobjektet. Det innebär att  objektet kan kommer åt de egenskaper och metoder som finns i moderobjektet.
+Så, när ett visst objekt försöker komma åt en ärvd egenskap eller metod, så letar JavaScript efter den på objektet i fråga. Om den inte finns där, så fortsätter JavaScript att leta uppåt i prototypkedjan tills den hittar deklarationen av egenskapen eller metoden, eller tills den når toppen av kedjan där Object.prototype finns.
+Ändringar finns dock kvar enbart på objektet ifråga som utförde ändringarna.
+Varför?
+Genom att ärva egenskaper från prototyper så kan man återanvända kod utan behöva återupprepa den.
+Om man gör ändringar i prototypen så ändras det i alla objekt som ligger i arvskedjan.
 
 ## JS 1.10 Higher-order functions
-Beskriv rubriken här
+Hur? Vad?
+En higher-order function är en funktion som kan ta en annan funktion som argument. Det är också en funktion som kan returnera en funktion som resultat.
+När man skickar in ett argument i en funktion så skriver man det innan för parentesen efter deklarationen av funktionen. Dit kan man skicka in objekt eller variabler, men i JavaScript kan man skicka in andra funktioner och använda den inuti sin egen logik. 
+En high-order function kan också returnera en funktion som resultat. Det gör att man kan skapa funktioner dynamisk baserat på olika villkor och kriterier.
+Varför?
+Det ger ökad flexibilitet och återanvändbarhet, att kunna generera funktionssvar inuti andra funktioner. Det ger kortare kod som är mer översiktligt om man inte behöver definiera villkor flera gånger utan istället skicka in en färdig funktion.
+Det gör dock koden också mer komplex, och det kan vara svårt att vänja sig vid detta då det inte är vanligt i andra stora programmeringsspråk.
+Som andra koder som involverar fler loopar, block och scopes så kan det leda till en liten förlust i prestandan när programmet måste gå in djupt i koden och leta.
 
 ## JS 1.11 Single-thread programming
-Beskriv rubriken här
+Hur?
+Programmet behandlar och utför instruktionerna en efter en ända tills den når slutet av programmet, eller tills den stöter på en instruktion som väntar på inläsning av data etc. Det är alltså bara en uppgift eller operation som utförs åt gången, och först när den är klar så kan nästa uppgift eller operation utföras.
+Det är viktigt att göra koden effektiv, så att man förhindrar att det t ex inte skulle svara.
+Det kan man göra genom att lägga in asynkron programmering, som ändå kommer att utföras samtidigt. Man kan också flytta kodblock, som är benägna att blockera, till bakgrundsprocesser eller trådar för att hålla huvudtråden fri att rulla på.
+Vad?
+Single-thread programming innebär att ett program körs en i enda tråd av exekvering. När programmet körs så börjar det uppifrån och arbetar sig nedåt.
+Varför?
+Det är lättare att hantera programmet, och man behöver inte handskas med trådar som stör varandra eller prestandaförlust som kan komma sig av delade resurser såsom minne. Endast en tråd gör också att det blir färre buggar vilket sparar tid vild utveckling och underhåll. Programmet blir nämligen mer förutsägbart och man kan undvika fel på ett lättare sätt.
+Dock är single-thread programming inte så effektivt att utnyttja hårdvarans förutsättningar, så som flera processorkärnor. Det kan leda till långsamhet och försämrad prestanda trots att själva datorn har bra förutsättningar.
+Det är alltså en bra ide att använda single-thread programming vid mindre applikationer men vid större program så kan det skapa problem med långsamhet.
 
 ## JS 1.12 OAuth från frontend
-Beskriv rubriken här
+Hur? Vad? Varför?
+OAtuh är ett standardprotokoll för autentisering och auktorisering, och innebär att man kan använda sin inloggning hos en tredje part för att logga in på en viss hemsida. Exempel på tredje parten är facebook och google.
+När detta sker i frontend så används ofta OAuth-bibliotek eller ramverk som har funktioner och API-anrop för att underlätta flödet.
+OAuth 2.0 Implicit Grant är variant inom autentiseringsflödet som används för att autentisera på klientens webbläsarsida. Den används ofta när klientappen är single page eller när en mobilapp inte har en säker servermiljö. Så klientappen skickar en förfrågan till tredjeparten genom att omdirigera användaren dit. Användaren loggar in, och direkt då skickas en åtkomsttoken till klientappen. Dock har detta sätt vissa säkerhetsrisker efter användaren kan se åtkomsttoken.
+OAuth Authorization code grant with proof key for code exchange (PKCE) är en förbättrad och mer säker version än den förra. Den här metoden genererar en code challenge baserat på en slumpmässig verifier som genrerats innan autentiseringsprocessen påbörjats, och ska användas innan token skickas. Token skickas bara om verifiern och code challenge matchar varandra. 
 
 ## JS 1.13 Websockets
-Beskriv rubriken här
+Vad?
+Websockets är en standard inom kommunikationsprotokoll, och det tillåter en permanent kommunikation mellan en klient och en server. Det gör det möjligt att skicka data ofta utan att behöva upprätta en anslutning varje gång. Det är en tvåvägskommunikation, så det är bara mellan server och klient.
+Hur?
+Vanligtvis används HTTP-protokollet vid kommunikation mellan server och klient, men när det krävs kommunikation i realtid så är det bättre med websockets. Det är t ex vid chattapplikationer, realtidsövervakning (så som trafik, temperatur, ekonomi osv), spelapplikationer eller appar där flera jobbar samtidigt, t ex google docs.
+Vi upprättar kontakt med en server och lyssnar sedan på event. Det finns 4 olika events:
+Open, connection established
+Message, data recieved
+Error, websocket error
+Close, connection closed
+Varför?
+Det möjliggör realtidskommunikation, att data skickas och tas emot omedelbart. Prestandan förbättras när det inte behöver upprättas anslutning och avsluta anslutning för varje förfrågan och svar som skickas.
+Websockets behöver stöd från både webbläsare och server, vilket gör att vissa äldre webbläsare kan sakna stödet.
 
